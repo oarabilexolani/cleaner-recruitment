@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaner Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .register-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .register-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .register-container .form-label {
+            font-weight: bold;
+        }
+
+        .register-container .form-control {
+            margin-bottom: 15px;
+        }
+
+        .navbar-brand h1 {
+            color: white;
+        }
+
+        /* Header styling */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: black;
+            z-index: 9999;
+        }
+
+        /* Footer */
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Button customization */
+        .btn-primary {
+            background-color: black;
+            border: 2px solid #333;
+        }
+
+        .btn-primary:hover {
+            background-color: white;
+            color: black;
+            border-color: #333;
+        }
+
+        .btn-outline-secondary {
+            color: black;
+            border-color: black;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <h1 class="text-white mb-0">Cleaner Registration</h1>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Register Form Section -->
+    <div class="register-container">
+        <main class="container my-5">
+            <h2 class="text-center mb-4">Submit a Cleaner Registration</h2>
+
+            <!-- Cleaner Registration Form -->
+            <form id="cleaner-registration-form" action="/register" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="age" class="form-label">Age:</label>
+                    <input type="number" id="age" name="age" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cleaner-experience" class="form-label">Experience (in years):</label>
+                    <input type="number" id="cleaner-experience" name="experience" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="skills" class="form-label">Skills:</label>
+                    <textarea id="skills" name="skills" class="form-control" rows="3" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cleaner-location" class="form-label">Location:</label>
+                    <input type="text" id="cleaner-location" name="location" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="availability" class="form-label">Availability:</label>
+                    <input type="text" id="availability" name="availability" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+            </form>
+
+            <div class="text-center mt-4">
+                <a href="/" class="btn btn-outline-secondary">Back to Home</a>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Cleaner Recruitment | All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

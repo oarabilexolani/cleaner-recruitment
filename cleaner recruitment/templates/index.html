@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaner Recruitment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Custom Button Styles */
+        .custom-button {
+            background-color: rgb(0, 0, 0);
+            color: #333;
+            border: 2px solid #333;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .custom-button:hover {
+            background-color: #e0e0e0;
+            color: black;
+            border-color: #666;
+        }
+
+        /* Body and Header Styling */
+        body {
+            background-color: #fff; /* Remove grey background */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure footer stays at the bottom */
+        }
+
+        header {
+            margin-bottom: 20px;
+            background-color: black;
+        }
+
+        .navbar-brand h1, .navbar-brand p {
+            color: white;
+        }
+
+        .nav-link {
+            color: white !important;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: rgba(255, 255, 255, 0);
+            color: black;
+        }
+
+        /* Tab Styles */
+        .nav-pills .nav-link {
+            background-color: #333;
+            color: rgb(14, 13, 13);
+        }
+
+        .nav-pills .nav-link:hover {
+            background-color: #575656;
+            color: #000;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto; /* Push footer to the bottom */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <h1 class="mb-0">Cleaner Recruitment</h1>
+                    <p class="text-white-50 small mb-0">Miss Senzekile's Organization</p>
+                </a>
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link custom-button" href="/admin_login">Admin Dashboard</a>
+                  </li>
+              </ul>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link custom-button" href="/register">Register as a Cleaner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link custom-button" href="/client_request">Submit a Client Request</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <!-- Navigation Pills Section -->
+        <ul class="nav nav-pills nav-fill gap-2 p-2 bg-black rounded-5 shadow-sm" role="tablist" 
+            style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-black); --bs-nav-pills-link-active-bg: var(--bs-white);">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active rounded-5" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-content" type="button" role="tab" aria-controls="home-tab-content" aria-selected="true">Home</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link rounded-5" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-content" type="button" role="tab" aria-controls="profile-tab-content" aria-selected="false">Profile</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link rounded-5" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-content" type="button" role="tab" aria-controls="contact-tab-content" aria-selected="false">Contact</button>
+            </li>
+        </ul>
+        
+        <!-- Tab Content Section -->
+        <div class="tab-content mt-4">
+            <!-- Home Tab Content -->
+            <div class="tab-pane fade show active" id="home-tab-content" role="tabpanel" aria-labelledby="home-tab">
+                <h2>Welcome to Cleaner Recruitment</h2>
+                <p>This is the Home section where you can explore the platform.</p>
+            </div>
+            <!-- Profile Tab Content -->
+            <div class="tab-pane fade" id="profile-tab-content" role="tabpanel" aria-labelledby="profile-tab">
+                <h2>Profile</h2>
+                <p><b>Senzekile's Cleaning Services</b> is a leading platform connecting individuals and businesses with professional cleaning services. We understand the importance of a clean and hygienic environment, whether it's your home, office, or any other space.</p>
+                <p><b>For Cleaners:</b> We offer a reliable platform to find fulfilling cleaning jobs, flexible schedules, and competitive rates. We help you build your reputation and grow your cleaning business.</p>
+                <p><b>For Clients:</b> We make it easy to find and book top-rated cleaners with just a few clicks. Our platform provides access to a wide range of cleaning services, from regular house cleaning to specialized deep cleans. We prioritize customer satisfaction and ensure all our cleaners are background-checked and insured.</p>
+            </div>
+            <!-- Contact Tab Content -->
+            <div class="tab-pane fade" id="contact-tab-content" role="tabpanel" aria-labelledby="contact-tab">
+                <h2>Contact Us</h2>
+                <p>This is the Contact section. Reach out to us for any inquiries or assistance.</p>
+                <p><strong>Phone:</strong> 076 690 2290</p> 
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cleaner Recruitment | All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
