@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash, jsonify, session
+from flask import Flask, render_template, request, redirect, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
@@ -62,7 +62,6 @@ def index():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        # Extract cleaner details from form
         name = request.form["name"]
         age = request.form["age"]
         experience = request.form["experience"]
@@ -70,7 +69,6 @@ def register():
         location = request.form["location"]
         availability = request.form["availability"]
         
-        # Add cleaner to the database
         cleaner = Cleaner(
             name=name,
             age=age,
@@ -82,9 +80,7 @@ def register():
         db.session.add(cleaner)
         db.session.commit()
         
-        # Send email notification to admin
         send_email("oarabilexolani2@gmail.com", f"New Cleaner Registered: {name}")
-        
         flash("Cleaner registered successfully!", "success")
         return redirect("/")
     return render_template("register.html")
@@ -93,12 +89,10 @@ def register():
 @app.route("/client_request", methods=["GET", "POST"])
 def client_request():
     if request.method == "POST":
-        # Extract client request details from form
-        experience = request.form["experience"]
         location = request.form["location"]
+        experience = request.form["experience"]
         requirements = request.form["requirements"]
         
-        # Add client request to the database
         client_request = ClientRequest(
             location=location,
             experience=experience,
@@ -107,24 +101,20 @@ def client_request():
         db.session.add(client_request)
         db.session.commit()
         
-        # Send email notification
         send_email("oarabilexolani2@gmail.com", f"New Client Request Submitted:\nLocation: {location}\nExperience: {experience}\nRequirements: {requirements}")
-        
         flash("Client request submitted successfully!", "success")
         return redirect("/")
     return render_template("client_request.html")
 
-# Route to admin page (after login)
+# Route to admin page
 @app.route("/admin")
 def admin():
     if 'admin_logged_in' in session and session['admin_logged_in']:
-        # Fetch all cleaners and client requests from the database
         cleaners = Cleaner.query.all()
         client_requests = ClientRequest.query.all()
         return render_template("admin.html", cleaners=cleaners, client_requests=client_requests)
-    else:
-        flash("You need to log in first.", "danger")
-        return redirect("/admin_login")
+    flash("You need to log in first.", "danger")
+    return redirect("/admin_login")
 
 # Admin login route
 @app.route("/admin_login", methods=["GET", "POST"])
@@ -133,14 +123,11 @@ def admin_login():
         username = request.form["username"]
         password = request.form["password"]
 
-        # Check credentials
         if username == "oarabilexolani2@gmail.com" and password == "1234":
             session['admin_logged_in'] = True
             flash("Login successful!", "success")
             return redirect("/admin")
-        else:
-            flash("Invalid credentials, please try again.", "danger")
-
+        flash("Invalid credentials, please try again.", "danger")
     return render_template("admin_login.html")
 
 # Admin logout route

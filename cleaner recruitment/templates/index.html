@@ -4,36 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cleaner Recruitment</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         /* Custom Button Styles */
-        .custom-button {
-            background-color: rgb(0, 0, 0);
-            color: #333;
-            border: 2px solid #333;
+        .custom-button:hover {
+            background-color: rgba(0, 0, 0, 0.26);
+            color: #fff;
+            border: 1px solid #333;
             font-weight: bold;
-            padding: 10px 20px;
+            padding: 5px 5px;
             border-radius: 5px;
             text-transform: uppercase;
             font-size: 14px;
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
-        .custom-button:hover {
-            background-color: #e0e0e0;
-            color: black;
-            border-color: #666;
-        }
-
         /* Body and Header Styling */
         body {
-            background-color: #fff; /* Remove grey background */
+            background-color: #000; /* Change background to black */
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             min-height: 100vh; /* Ensure footer stays at the bottom */
+            color: white;
+            font-weight: bold;
+            padding: 10px 10px;
+            border-radius: 2px;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            
         }
 
         header {
@@ -50,19 +49,17 @@
         }
 
         .nav-pills .nav-link.active {
-            background-color: rgba(255, 255, 255, 0);
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter active tab */
             color: black;
         }
 
         /* Tab Styles */
         .nav-pills .nav-link {
             background-color: #333;
-            color: rgb(14, 13, 13);
         }
 
         .nav-pills .nav-link:hover {
             background-color: #575656;
-            color: #000;
         }
 
         /* Footer Styling */
@@ -70,9 +67,56 @@
             background-color: black;
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 10px;
             margin-top: auto; /* Push footer to the bottom */
+            height: 5%; /* Cover the entire screen */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
+
+        /* Background Section with Overlay */
+        .background-overlay {
+            position: relative;
+            background-image: url('{{ url_for('static', filename='images/basin-white-wall.jpg') }}'); /* Path to your image */
+            background-size: cover;
+            background-position: center;
+            height: 100%; /* Cover the entire screen */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .background-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            z-index: 1;
+        }
+
+        .overlay-content {
+            position: relative;
+            z-index: 2; /* Ensure content stays on top of the overlay */
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        /* Ensuring the content fits nicely */
+        .container {
+            position: relative;
+            z-index: 3; /* Content should be above the background */
+            margin-top: 50px;
+        }
+
     </style>
 </head>
 <body>
@@ -104,11 +148,17 @@
             </div>
         </nav>
     </header>
+    
+    <!-- Background Section -->
+    <div class="background-overlay">
+        <div class="overlay-content">
+            
+        </div>
+    </div>
 
     <main class="container my-5">
         <!-- Navigation Pills Section -->
-        <ul class="nav nav-pills nav-fill gap-2 p-2 bg-black rounded-5 shadow-sm" role="tablist" 
-            style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-black); --bs-nav-pills-link-active-bg: var(--bs-white);">
+        <ul class="nav nav-pills nav-fill gap-2 p-2 bg-black rounded-5 shadow-sm" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active rounded-5" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-content" type="button" role="tab" aria-controls="home-tab-content" aria-selected="true">Home</button>
             </li>
@@ -119,7 +169,7 @@
                 <button class="nav-link rounded-5" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-content" type="button" role="tab" aria-controls="contact-tab-content" aria-selected="false">Contact</button>
             </li>
         </ul>
-        
+
         <!-- Tab Content Section -->
         <div class="tab-content mt-4">
             <!-- Home Tab Content -->
